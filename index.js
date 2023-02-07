@@ -18,25 +18,19 @@ cloudinary.config({
 (async () => {
 
     let videoURL = cloudinary.url("docs/video_features_tutorial/hair", {
+        resource_type: "video",
         transformation: [
-          { overlay: "video:docs:video_features_tutorial:romeo_and_juliet"},
-          { flags: "layer_apply"},
-          { overlay: "cloudinary_icon"},
-          { width: 400, x:10, y:10 },
-          { flags: "layer_apply", gravity: "north_east"},
-          { crop: "fill", width: 250, aspect_ratio: "3:4", gravity: "north" },
+          { aspect_ratio: "3:4", crop: "fill", gravity: "north", width: 250 },
           { duration: "5"},
           { duration: "5", flags: "splice", overlay: "video:docs:video_features_tutorial:makeup"},
-          { crop: "fill", width: 250, aspect_ratio: "3:4", gravity: "north" }, 
-          { overlay: "video:docs:video_features_tutorial:romeo_and_juliet"},
-          {start_offset:"05"},
+          { aspect_ratio: "3:4", crop: "fill", gravity: "north", width: 250, flags: "layer_apply" },
+          { overlay: "video:docs:video_features_tutorial:romeo_and_juliet" },
           { flags: "layer_apply"},
           { overlay: "cloudinary_icon"},
-          { width: 40, x:10,y:10 },
+          { width: 40, x:10, y:10 },
           { flags: "layer_apply", gravity: "north_east"},
-          { flags: "layer_apply" },
           { overlay: {resource_type: "subtitles", public_id: "docs/video_features_tutorial/captions.srt"}},
-          { flag:"layer_apply" }
+          { flag:"layer_apply" },
         ],
       });
     console.log(videoURL);
